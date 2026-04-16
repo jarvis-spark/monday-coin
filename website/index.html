@@ -417,6 +417,53 @@
 
     /* ─── TOKENOMICS ───────────────────────────────── */
     #tokenomics { background: var(--bg); }
+
+    .fair-launch-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,214,10,0.08) 0%, rgba(26,31,60,0.6) 100%);
+      border: 2px solid var(--yellow);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      gap: 1rem;
+    }
+    .fair-launch-badge {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--yellow);
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(255,214,10,0.5);
+    }
+    .fair-launch-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--white);
+    }
+    .fair-launch-desc {
+      font-size: 0.95rem;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+    .fair-launch-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    .fl-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.78rem;
+      color: var(--grey);
+      white-space: nowrap;
+    }
     .token-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -972,11 +1019,11 @@
       </div>
       <div class="hero-stat-item">
         <div class="hero-stat-value">🔥</div>
-        <div class="hero-stat-label">LP Burned</div>
+        <div class="hero-stat-label">LP Burned at Grad</div>
       </div>
       <div class="hero-stat-item">
         <div class="hero-stat-value">✅</div>
-        <div class="hero-stat-label">Authorities Revoked</div>
+        <div class="hero-stat-label">100% Fair Launch</div>
       </div>
     </div>
   </div>
@@ -1047,34 +1094,17 @@
     </p>
 
     <div class="token-grid">
-      <div class="pie-wrapper reveal">
-        <div class="pie-chart">
-          <div class="pie-center">
-            <div class="pie-center-label">1B</div>
-            <div class="pie-center-sub">$MONDAY</div>
-          </div>
-        </div>
-        <div class="pie-legend">
-          <div class="legend-item">
-            <div class="legend-dot" style="background:var(--yellow)"></div>
-            <span>Liquidity Pool</span>
-            <span>50%</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-dot" style="background:var(--orange)"></div>
-            <span>Community & Marketing</span>
-            <span>25%</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#444"></div>
-            <span>Ecosystem Reserve</span>
-            <span>15%</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#222"></div>
-            <span>Team (Locked 1yr)</span>
-            <span>10%</span>
-          </div>
+      <div class="fair-launch-block reveal">
+        <div class="fair-launch-badge">100%</div>
+        <div class="fair-launch-title">FAIR LAUNCH</div>
+        <div class="fair-launch-desc">No presale. No team tokens.<br>No VC bags. No insider allocation.<br>Everyone buys on the same curve.</div>
+        <div class="fair-launch-pills">
+          <div class="fl-pill">🚫 No Presale</div>
+          <div class="fl-pill">🚫 No Team Allocation</div>
+          <div class="fl-pill">🚫 No VC</div>
+          <div class="fl-pill">✅ Bonding Curve</div>
+          <div class="fl-pill">✅ Equal Entry</div>
+          <div class="fl-pill">✅ Community Owned</div>
         </div>
       </div>
 
@@ -1097,7 +1127,7 @@
         </div>
         <div class="token-stat">
           <span class="token-stat-name">LP Status</span>
-          <span class="token-stat-value fire">BURNED 🔥</span>
+          <span class="token-stat-value fire">BURNED AT GRAD 🔥</span>
         </div>
         <div class="token-stat">
           <span class="token-stat-name">Mint Authority</span>
@@ -1191,7 +1221,7 @@
           <li>First 1,000 holders celebrate by complaining</li>
           <li>LP locked &amp; burned, authorities revoked</li>
         </ul>
-        <span class="timeline-tag">✅ IN PROGRESS</span>
+        <span class="timeline-tag">🚀 LAUNCHING SOON</span>
       </div>
 
       <div class="timeline-item reveal">
@@ -1204,7 +1234,7 @@
           <li>First meme contest with $MONDAY prizes</li>
           <li>Community-driven marketing push</li>
           <li>Dexscreener trending campaign</li>
-          <li>First tier-2 CEX talks begin</li>
+          <li>CEX applications begin</li>
         </ul>
         <span class="timeline-tag">🔜 COMING SOON</span>
       </div>
@@ -1214,12 +1244,12 @@
         <div class="timeline-phase">Phase 3</div>
         <h3 class="timeline-title">THE MEETING THAT COULD'VE BEEN AN EMAIL 💀</h3>
         <ul class="timeline-list">
-          <li>Tier-1 CEX listing</li>
+          <li>Major CEX listing (if the universe cooperates)</li>
           <li>$MONDAY merch drop (hoodies, mugs obviously)</li>
           <li>50,000 holders</li>
           <li>Strategic partnership announcements</li>
           <li>$MONDAY x creator collab campaign</li>
-          <li>Expanded ecosystem utilities announced</li>
+          <li>Community governance proposals begin</li>
         </ul>
         <span class="timeline-tag">🌙 FUTURE</span>
       </div>
@@ -1229,10 +1259,10 @@
         <div class="timeline-phase">Phase 4</div>
         <h3 class="timeline-title">WHEN MONDAY BECOMES PAYDAY 🚀</h3>
         <ul class="timeline-list">
-          <li>Top 100 CMC ranking</li>
+          <li>Top 100 CMC (dare to dream 😴)</li>
           <li>100,000+ holders globally</li>
           <li>$MONDAY cultural brand expansion</li>
-          <li>Mainstream press coverage worldwide</li>
+          <li>Mainstream press covers meme coin named after everyone's least favourite day</li>
           <li>The world finally accepts its fate 😴💛</li>
           <li>You retire. Buy a yacht. Name it Monday.</li>
         </ul>
