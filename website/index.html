@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$MONDAY — You Hate It. You Need It.</title>
+  <meta name="description" content="$MONDAY is the only Solana meme coin that understands your pain. Monday is inevitable. So is $MONDAY." />
+  <meta property="og:title" content="$MONDAY — You Hate It. You Need It." />
+  <meta property="og:description" content="The most universally relatable coin on Solana. Monday sucks. Own it." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0a;
+      --bg2:       #111111;
+      --bg3:       #181818;
+      --yellow:    #FFD700;
+      --orange:    #FF6B35;
+      --white:     #ffffff;
+      --grey:      #888888;
+      --card-bg:   #141414;
+      --border:    rgba(255,215,0,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1,h2,h3,h4,h5 {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; }
+
+    /* ─── SCROLLBAR ────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 3px; }
+
+    /* ─── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--yellow);
+      letter-spacing: 0.1em;
+    }
+    .nav-logo span { color: var(--white); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-cta {
+      background: var(--yellow);
+      color: #000;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 1.4rem;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: #ffe033; transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ─── TICKER ───────────────────────────────────── */
+    .ticker-wrap {
+      background: var(--yellow);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.55rem 0;
+      position: relative;
+      z-index: 10;
+    }
+    .ticker-track {
+      display: inline-block;
+      animation: ticker-scroll 22s linear infinite;
+    }
+    .ticker-track span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: #000;
+      margin-right: 3rem;
+    }
+    .ticker-track span.sep {
+      color: #5a4500;
+      margin-right: 3rem;
+    }
+    @keyframes ticker-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── HERO ─────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 1.5rem 4rem;
+      overflow: hidden;
+    }
+
+    /* particle canvas sits behind everything */
+    #particle-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 70%);
+      animation: pulse-glow 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.7; transform: translate(-50%,-55%) scale(1); }
+      50%       { opacity: 1;   transform: translate(-50%,-55%) scale(1.08); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    /* ─── MASCOT SVG ───────────────────────────────── */
+    .mascot {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 1.5rem;
+      filter: drop-shadow(0 0 24px rgba(255,215,0,0.35));
+      animation: mascot-float 3.5s ease-in-out infinite;
+    }
+    @keyframes mascot-float {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50%       { transform: translateY(-12px) rotate(2deg); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,215,0,0.12);
+      border: 1px solid rgba(255,215,0,0.4);
+      color: var(--yellow);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 9rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      background: linear-gradient(160deg, #ffffff 40%, var(--yellow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: rgba(255,255,255,0.65);
+      max-width: 580px;
+      margin: 0 auto 2.2rem;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+    .hero-sub strong { color: var(--yellow); font-weight: 700; }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--yellow);
+      color: #000;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      padding: 0.85rem 2.4rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 28px rgba(255,215,0,0.3);
+    }
+    .btn-primary:hover {
+      background: #ffe033;
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(255,215,0,0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      padding: 0.85rem 2.4rem;
+      border-radius: 6px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-secondary:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat-item { text-align: center; }
+    .hero-stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--yellow);
+      letter-spacing: 0.08em;
+    }
+    .hero-stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    /* ─── SECTION SHARED ───────────────────────────── */
+    section { position: relative; overflow: hidden; }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 1.5rem;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .section-title .accent { color: var(--yellow); }
+    .section-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+      line-height: 1.65;
+    }
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--yellow);
+      margin: 1.5rem 0;
+      border-radius: 2px;
+    }
+
+    /* ─── ABOUT ────────────────────────────────────── */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+
+    .about-text p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .about-text p strong { color: var(--yellow); font-weight: 700; }
+
+    .feature-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .feature-card:hover {
+      border-color: rgba(255,215,0,0.45);
+      transform: translateX(6px);
+    }
+    .feature-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      width: 48px;
+      text-align: center;
+      filter: drop-shadow(0 0 8px rgba(255,215,0,0.4));
+    }
+    .feature-card h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--grey);
+      line-height: 1.55;
+    }
+
+    /* ─── TOKENOMICS ───────────────────────────────── */
+    #tokenomics { background: var(--bg); }
+    .token-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+
+    /* pure CSS pie */
+    .pie-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    .pie-chart {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--yellow)   0%   50%,
+        var(--orange)  50%   75%,
+        #444444        75%   90%,
+        #222222        90%  100%
+      );
+      box-shadow: 0 0 50px rgba(255,215,0,0.2);
+      animation: spin-in 1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    @keyframes spin-in {
+      from { transform: scale(0.5) rotate(-180deg); opacity: 0; }
+      to   { transform: scale(1) rotate(0deg);      opacity: 1; }
+    }
+    .pie-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 120px;
+      height: 120px;
+      background: var(--bg);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .pie-center-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--yellow);
+      letter-spacing: 0.05em;
+    }
+    .pie-center-sub {
+      font-size: 0.62rem;
+      color: var(--grey);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .pie-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 300px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+    }
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .legend-item span:last-child {
+      margin-left: auto;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .legend-item span:nth-child(2) { color: var(--grey); flex: 1; }
+
+    .token-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .token-stat {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.25s;
+    }
+    .token-stat:hover { border-color: rgba(255,215,0,0.4); }
+    .token-stat-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .token-stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+    }
+    .token-stat-value.ok { color: #4ade80; }
+    .token-stat-value.fire { color: var(--orange); }
+
+    /* ─── HOW TO BUY ───────────────────────────────── */
+    #howtobuy { background: var(--bg2); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .step-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .step-card:hover {
+      border-color: rgba(255,215,0,0.4);
+      transform: translateY(-4px);
+    }
+    .step-card:hover::before { opacity: 1; }
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: rgba(255,215,0,0.12);
+      margin-bottom: 0.5rem;
+    }
+    .step-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .step-card h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+    .step-card p {
+      font-size: 0.85rem;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+    .step-card a { color: var(--yellow); }
+    .step-card a:hover { text-decoration: underline; }
+
+    .ca-box {
+      margin-top: 3.5rem;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,215,0,0.25);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .ca-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.75rem;
+    }
+    .ca-address-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 0.9rem 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 0.5rem;
+    }
+    .ca-address {
+      flex: 1;
+      font-family: 'Inter', monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.55);
+      text-align: left;
+      word-break: break-all;
+    }
+    .ca-copy-btn {
+      background: var(--yellow);
+      color: #000;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      padding: 0.45rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .ca-copy-btn:hover { background: #ffe033; }
+    .ca-copy-btn.copied { background: #4ade80; color: #000; }
+    .ca-note {
+      font-size: 0.78rem;
+      color: var(--grey);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── ROADMAP ──────────────────────────────────── */
+    #roadmap { background: var(--bg); }
+    .timeline {
+      position: relative;
+      margin-top: 4rem;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--yellow), var(--orange), rgba(255,215,0,0.1));
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 3.5rem 2.5rem;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 0.25rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--yellow);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 12px rgba(255,215,0,0.6);
+      transform: translateX(calc(-50% + 1px));
+    }
+    .timeline-item.future .timeline-dot {
+      background: var(--bg3);
+      border-color: var(--grey);
+      box-shadow: none;
+    }
+    .timeline-phase {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.4rem;
+    }
+    .timeline-item.future .timeline-phase { color: var(--grey); }
+    .timeline-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+    .timeline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .timeline-list li {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .timeline-list li::before {
+      content: '→';
+      color: var(--yellow);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .timeline-item.future .timeline-list li::before { color: var(--grey); }
+    .timeline-item.future .timeline-list li { color: rgba(255,255,255,0.3); }
+    .timeline-tag {
+      display: inline-block;
+      margin-top: 0.8rem;
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.25);
+      color: var(--yellow);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+    }
+    .timeline-item.future .timeline-tag {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--grey);
+    }
+
+    /* ─── FOOTER ───────────────────────────────────── */
+    footer {
+      background: #060606;
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 1.5rem 2.5rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--yellow);
+      letter-spacing: 0.1em;
+    }
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--grey);
+      margin-top: -0.75rem;
+      letter-spacing: 0.1em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-link {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--yellow); }
+    .footer-disclaimer {
+      max-width: 640px;
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.25);
+      line-height: 1.65;
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.2);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+    .footer-copy span { color: var(--yellow); }
+
+    /* ─── SCROLL REVEAL ────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── MOBILE MENU ──────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      nav.open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: rgba(10,10,10,0.97);
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--border);
+      }
+      nav.open .nav-cta {
+        display: inline-block;
+        text-align: center;
+        margin-top: 0.5rem;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .hero-headline { font-size: clamp(3.2rem, 14vw, 5rem); }
+
+      .about-grid,
+      .token-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .section-inner { padding: 4rem 1.2rem; }
+
+      .timeline { padding-left: 1.5rem; }
+      .timeline-dot { left: -1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { gap: 1.5rem; }
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── GLITCH EFFECT ON HEADLINE ───────────────── */
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: linear-gradient(160deg, #ffffff 40%, var(--yellow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glitch::before {
+      animation: glitch1 6s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+    .glitch::after {
+      animation: glitch2 6s infinite;
+      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    }
+    @keyframes glitch1 {
+      0%, 90%, 100% { transform: none; }
+      92% { transform: skewX(-3deg) translateX(-3px); }
+      94% { transform: skewX(3deg) translateX(3px); }
+      96% { transform: none; }
+    }
+    @keyframes glitch2 {
+      0%, 90%, 100% { transform: none; }
+      93% { transform: skewX(4deg) translateX(4px); }
+      95% { transform: skewX(-4deg) translateX(-4px); }
+      97% { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════ NAV ════════════════════════ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">$<span>MONDAY</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#tokenomics">Tokenomics</a></li>
+    <li><a href="#howtobuy">How to Buy</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ul>
+  <a href="#howtobuy" class="nav-cta">BUY $MONDAY</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ════════════════════ TICKER ═════════════════════ -->
+<div class="ticker-wrap" style="margin-top:64px;">
+  <div class="ticker-track" id="ticker">
+    <span>$MONDAY</span><span class="sep">😩</span>
+    <span>$MONDAY</span><span class="sep">☕</span>
+    <span>$MONDAY</span><span class="sep">😴</span>
+    <span>$MONDAY</span><span class="sep">💀</span>
+    <span>YOU HATE IT. YOU NEED IT.</span><span class="sep">★</span>
+    <span>$MONDAY</span><span class="sep">😩</span>
+    <span>$MONDAY</span><span class="sep">☕</span>
+    <span>$MONDAY</span><span class="sep">😴</span>
+    <span>$MONDAY</span><span class="sep">💀</span>
+    <span>YOU HATE IT. YOU NEED IT.</span><span class="sep">★</span>
+    <!-- duplicate for seamless loop -->
+    <span>$MONDAY</span><span class="sep">😩</span>
+    <span>$MONDAY</span><span class="sep">☕</span>
+    <span>$MONDAY</span><span class="sep">😴</span>
+    <span>$MONDAY</span><span class="sep">💀</span>
+    <span>YOU HATE IT. YOU NEED IT.</span><span class="sep">★</span>
+    <span>$MONDAY</span><span class="sep">😩</span>
+    <span>$MONDAY</span><span class="sep">☕</span>
+    <span>$MONDAY</span><span class="sep">😴</span>
+    <span>$MONDAY</span><span class="sep">💀</span>
+    <span>YOU HATE IT. YOU NEED IT.</span><span class="sep">★</span>
+  </div>
+</div>
+
+<!-- ════════════════════ HERO ════════════════════════ -->
+<section id="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-glow"></div>
+
+  <div class="hero-content">
+    <!-- Mascot SVG — grumpy tired cat face -->
+    <div class="mascot">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body/Head -->
+        <ellipse cx="80" cy="92" rx="55" ry="50" fill="#E8731A"/>
+        <!-- Face -->
+        <ellipse cx="80" cy="82" rx="48" ry="44" fill="#F4903A"/>
+        <!-- Ears -->
+        <polygon points="38,50 28,18 55,40" fill="#E8731A"/>
+        <polygon points="38,50 32,24 52,42" fill="#FF9A6C"/>
+        <polygon points="122,50 132,18 105,40" fill="#E8731A"/>
+        <polygon points="122,50 128,24 108,42" fill="#FF9A6C"/>
+        <!-- Eye bags / tired lines -->
+        <ellipse cx="62" cy="80" rx="14" ry="11" fill="#fff"/>
+        <ellipse cx="98" cy="80" rx="14" ry="11" fill="#fff"/>
+        <!-- Bag under eyes -->
+        <path d="M51 88 Q62 95 73 88" stroke="#c9601a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M87 88 Q98 95 109 88" stroke="#c9601a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Pupils (half-closed / droopy) -->
+        <ellipse cx="62" cy="80" rx="7" ry="5" fill="#2a1a00"/>
+        <ellipse cx="98" cy="80" rx="7" ry="5" fill="#2a1a00"/>
+        <!-- Eye glint -->
+        <circle cx="65" cy="78" r="2" fill="#fff"/>
+        <circle cx="101" cy="78" r="2" fill="#fff"/>
+        <!-- Heavy eyelids -->
+        <path d="M48 76 Q62 68 76 76" fill="#E8731A"/>
+        <path d="M84 76 Q98 68 112 76" fill="#E8731A"/>
+        <!-- Frown -->
+        <path d="M65 105 Q80 97 95 105" stroke="#2a1a00" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Whiskers left -->
+        <line x1="30" y1="85" x2="55" y2="88" stroke="#c9601a" stroke-width="1.5" opacity="0.7"/>
+        <line x1="28" y1="92" x2="54" y2="92" stroke="#c9601a" stroke-width="1.5" opacity="0.7"/>
+        <line x1="30" y1="99" x2="55" y2="96" stroke="#c9601a" stroke-width="1.5" opacity="0.7"/>
+        <!-- Whiskers right -->
+        <line x1="130" y1="85" x2="105" y2="88" stroke="#c9601a" stroke-width="1.5" opacity="0.7"/>
+        <line x1="132" y1="92" x2="106" y2="92" stroke="#c9601a" stroke-width="1.5" opacity="0.7"/>
+        <line x1="130" y1="99" x2="105" y2="96" stroke="#c9601a" stroke-width="1.5" opacity="0.7"/>
+        <!-- Nose -->
+        <ellipse cx="80" cy="98" rx="5" ry="3.5" fill="#c9601a"/>
+        <!-- Coffee cup hint at bottom -->
+        <rect x="64" y="130" width="32" height="22" rx="4" fill="#FFD700" opacity="0.9"/>
+        <path d="M96 136 Q106 137 106 145 Q106 150 96 150" stroke="#FFD700" stroke-width="3" fill="none" opacity="0.9"/>
+        <rect x="64" y="128" width="32" height="6" rx="3" fill="#ffe033" opacity="0.9"/>
+        <!-- Steam -->
+        <path d="M72 124 Q74 118 72 112" stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <path d="M80 122 Q82 115 80 109" stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <path d="M88 124 Q90 118 88 112" stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <div class="hero-badge reveal">😩 SOLANA MEME COIN</div>
+
+    <h1 class="hero-headline reveal reveal-delay-1">
+      <span class="glitch" data-text="YOU HATE IT.">YOU HATE IT.</span><br/>
+      <span class="glitch" data-text="YOU NEED IT.">YOU NEED IT.</span>
+    </h1>
+
+    <p class="hero-sub reveal reveal-delay-2">
+      Every week it comes for you. No mercy. No snooze button big enough.<br/>
+      <strong>$MONDAY</strong> is the Solana meme coin that owns your pain —<br/>
+      and maybe your bag too. 😴
+    </p>
+
+    <div class="hero-btns reveal reveal-delay-3">
+      <a href="#howtobuy" class="btn-primary">☕ BUY $MONDAY</a>
+      <a href="#" class="btn-secondary">✈️ JOIN TELEGRAM</a>
+    </div>
+
+    <div class="hero-stats reveal reveal-delay-4">
+      <div class="hero-stat-item">
+        <div class="hero-stat-value">1B</div>
+        <div class="hero-stat-label">Total Supply</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-value">0%</div>
+        <div class="hero-stat-label">Buy/Sell Tax</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-value">🔥</div>
+        <div class="hero-stat-label">LP Burned</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-value">✅</div>
+        <div class="hero-stat-label">Authorities Revoked</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ ABOUT ═══════════════════════ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label reveal">The Manifesto</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      WHAT IS <span class="accent">$MONDAY?</span>
+    </h2>
+    <div class="divider reveal reveal-delay-1"></div>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          $MONDAY is not just a coin. It's a <strong>feeling</strong>. It's the alarm at 6:47 AM. It's the cold coffee. It's every Slack notification before you've even opened your eyes. 😩
+        </p>
+        <p>
+          Built on <strong>Solana</strong> because like Mondays, transactions are fast, relentless, and show up before you're ready.
+        </p>
+        <p>
+          We didn't create Monday. Nobody asked for it. It just <strong>exists</strong> — every single week — without apology. We figured if it's going to ruin everyone's life anyway, it might as well make us rich.
+        </p>
+        <p>
+          No roadmap promises we can't keep. No influencer deals with questionable timelines. Just <strong>vibes, memes, and the universal shared trauma</strong> of 8 billion people who hate Monday as much as you do. ☕
+        </p>
+      </div>
+
+      <div class="feature-cards">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">🌍</div>
+          <div>
+            <h4>UNIVERSAL</h4>
+            <p>8 billion people. Different languages, cultures, timezones. One common enemy. Monday doesn't discriminate. Neither does $MONDAY.</p>
+          </div>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">⏰</div>
+          <div>
+            <h4>INEVITABLE</h4>
+            <p>You can't skip it. You can't ignore it. You can hate-tweet it but it still shows up. Just like compound interest on a bag you didn't sell.</p>
+          </div>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">💛</div>
+          <div>
+            <h4>IRRESISTIBLE</h4>
+            <p>You complain about it every week. Yet here you are, still buying $MONDAY. Deep down, you know. It has you. It always had you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ TOKENOMICS ══════════════════ -->
+<section id="tokenomics">
+  <div class="section-inner">
+    <div class="section-label reveal">On-chain Facts</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      TOKE<span class="accent">NOMICS</span>
+    </h2>
+    <div class="divider reveal reveal-delay-1"></div>
+    <p class="section-desc reveal reveal-delay-2">
+      Clean. Simple. No funny business. Like Monday — straightforward in the most brutal way possible. 💀
+    </p>
+
+    <div class="token-grid">
+      <div class="pie-wrapper reveal">
+        <div class="pie-chart">
+          <div class="pie-center">
+            <div class="pie-center-label">1B</div>
+            <div class="pie-center-sub">$MONDAY</div>
+          </div>
+        </div>
+        <div class="pie-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:var(--yellow)"></div>
+            <span>Liquidity Pool</span>
+            <span>50%</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:var(--orange)"></div>
+            <span>Community & Marketing</span>
+            <span>25%</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#444"></div>
+            <span>Ecosystem Reserve</span>
+            <span>15%</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#222"></div>
+            <span>Team (Locked 1yr)</span>
+            <span>10%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="token-stats reveal reveal-delay-1">
+        <div class="token-stat">
+          <span class="token-stat-name">Total Supply</span>
+          <span class="token-stat-value">1,000,000,000</span>
+        </div>
+        <div class="token-stat">
+          <span class="token-stat-name">Ticker</span>
+          <span class="token-stat-value">$MONDAY</span>
+        </div>
+        <div class="token-stat">
+          <span class="token-stat-name">Network</span>
+          <span class="token-stat-value">SOLANA</span>
+        </div>
+        <div class="token-stat">
+          <span class="token-stat-name">Buy / Sell Tax</span>
+          <span class="token-stat-value ok">0% / 0%</span>
+        </div>
+        <div class="token-stat">
+          <span class="token-stat-name">LP Status</span>
+          <span class="token-stat-value fire">BURNED 🔥</span>
+        </div>
+        <div class="token-stat">
+          <span class="token-stat-name">Mint Authority</span>
+          <span class="token-stat-value ok">REVOKED ✅</span>
+        </div>
+        <div class="token-stat">
+          <span class="token-stat-name">Freeze Authority</span>
+          <span class="token-stat-value ok">REVOKED ✅</span>
+        </div>
+        <div class="token-stat">
+          <span class="token-stat-name">Ownership</span>
+          <span class="token-stat-value ok">RENOUNCED ✅</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ HOW TO BUY ══════════════════ -->
+<section id="howtobuy">
+  <div class="section-inner">
+    <div class="section-label reveal">Get In The Pool</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      HOW TO <span class="accent">BUY</span>
+    </h2>
+    <div class="divider reveal reveal-delay-1"></div>
+    <p class="section-desc reveal reveal-delay-2">
+      Four steps. Even on a Monday. You've got this. ☕
+    </p>
+
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-icon">👻</div>
+        <h4>GET A WALLET</h4>
+        <p>Download <a href="https://phantom.app" target="_blank">Phantom Wallet</a> from the official site or app store. Set it up, save your seed phrase. Yes, write it down. No, not on your phone notes.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-icon">⚡</div>
+        <h4>BUY SOME SOL</h4>
+        <p>Fund your wallet with SOL. Buy from Coinbase, Binance, Kraken — anywhere. Transfer to your Phantom wallet address. Keep a little extra for gas fees.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-icon">🚀</div>
+        <h4>GO TO DEX</h4>
+        <p>Head to <a href="https://pump.fun" target="_blank">pump.fun</a> or <a href="https://raydium.io" target="_blank">Raydium</a>. Connect your Phantom wallet. Paste the $MONDAY contract address below.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-num">04</div>
+        <div class="step-icon">😩</div>
+        <h4>SWAP FOR $MONDAY</h4>
+        <p>Enter the amount of SOL you want to swap. Hit swap. Confirm in Phantom. Welcome to the club. You now own a piece of the world's most hated day. 💛</p>
+      </div>
+    </div>
+
+    <div class="ca-box reveal">
+      <div class="ca-label">📋 Contract Address</div>
+      <div class="ca-address-wrap">
+        <div class="ca-address" id="ca-text">COMING SOON — STAY TUNED 😴</div>
+        <button class="ca-copy-btn" id="ca-copy-btn" onclick="copyCA()">COPY</button>
+      </div>
+      <div class="ca-note">⚠️ Always verify the CA from our official channels before buying. Beware of fakes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ ROADMAP ═════════════════════ -->
+<section id="roadmap">
+  <div class="section-inner">
+    <div class="section-label reveal">The Master Plan</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      ROAD<span class="accent">MAP</span>
+    </h2>
+    <div class="divider reveal reveal-delay-1"></div>
+    <p class="section-desc reveal reveal-delay-2">
+      Like every Monday, this plan arrives whether you're ready or not. 😩
+    </p>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase 1</div>
+        <h3 class="timeline-title">THE ALARM GOES OFF 😩</h3>
+        <ul class="timeline-list">
+          <li>Token launch on pump.fun (Solana)</li>
+          <li>Website goes live (you're here)</li>
+          <li>Twitter/X account launches</li>
+          <li>Telegram community opens</li>
+          <li>First 1,000 holders celebrate by complaining</li>
+          <li>LP locked &amp; burned, authorities revoked</li>
+        </ul>
+        <span class="timeline-tag">✅ IN PROGRESS</span>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase 2</div>
+        <h3 class="timeline-title">THE COMMUTE FROM HELL ☕</h3>
+        <ul class="timeline-list">
+          <li>CoinGecko &amp; CoinMarketCap listings</li>
+          <li>10,000 holders milestone</li>
+          <li>First meme contest with $MONDAY prizes</li>
+          <li>Community-driven marketing push</li>
+          <li>Dexscreener trending campaign</li>
+          <li>First tier-2 CEX talks begin</li>
+        </ul>
+        <span class="timeline-tag">🔜 COMING SOON</span>
+      </div>
+
+      <div class="timeline-item future reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase 3</div>
+        <h3 class="timeline-title">THE MEETING THAT COULD'VE BEEN AN EMAIL 💀</h3>
+        <ul class="timeline-list">
+          <li>Tier-1 CEX listing</li>
+          <li>$MONDAY merch drop (hoodies, mugs obviously)</li>
+          <li>50,000 holders</li>
+          <li>Strategic partnership announcements</li>
+          <li>$MONDAY x creator collab campaign</li>
+          <li>Expanded ecosystem utilities announced</li>
+        </ul>
+        <span class="timeline-tag">🌙 FUTURE</span>
+      </div>
+
+      <div class="timeline-item future reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase 4</div>
+        <h3 class="timeline-title">WHEN MONDAY BECOMES PAYDAY 🚀</h3>
+        <ul class="timeline-list">
+          <li>Top 100 CMC ranking</li>
+          <li>100,000+ holders globally</li>
+          <li>$MONDAY cultural brand expansion</li>
+          <li>Mainstream press coverage worldwide</li>
+          <li>The world finally accepts its fate 😴💛</li>
+          <li>You retire. Buy a yacht. Name it Monday.</li>
+        </ul>
+        <span class="timeline-tag">🌙 FUTURE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">$MONDAY</div>
+      <div class="footer-tagline">YOU HATE IT. YOU NEED IT.</div>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        TWITTER
+      </a>
+      <a href="#" class="footer-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.932z"/>
+        </svg>
+        TELEGRAM
+      </a>
+      <a href="#" class="footer-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        DEXSCREENER
+      </a>
+      <a href="#" class="footer-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        PUMP.FUN
+      </a>
+    </div>
+
+    <p class="footer-disclaimer">
+      $MONDAY is a meme coin with no intrinsic value or expectation of financial return. It is not an investment and should not be treated as one. Cryptocurrency is volatile — never invest more than you can afford to lose. $MONDAY is not affiliated with any day of the week, Garfield, or your therapist. The universal hatred of Mondays is real; the financial advice is not. DYOR.
+    </p>
+
+    <div class="footer-copy">
+      © 2026 <span>$MONDAY</span> — All days are terrible equally.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Particle Canvas ─────────────────────────────────
+  (function () {
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const COUNT = 60;
+    for (let i = 0; i < COUNT; i++) {
+      particles.push({
+        x:  Math.random() * W,
+        y:  Math.random() * H,
+        r:  Math.random() * 1.8 + 0.4,
+        dx: (Math.random() - 0.5) * 0.35,
+        dy: (Math.random() - 0.5) * 0.35,
+        a:  Math.random() * 0.5 + 0.1,
+        da: (Math.random() - 0.5) * 0.003,
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      for (const p of particles) {
+        p.x += p.dx;
+        p.y += p.dy;
+        p.a += p.da;
+        if (p.a < 0.05 || p.a > 0.6) p.da *= -1;
+        if (p.x < 0) p.x = W;
+        if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H;
+        if (p.y > H) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 215, 0, ${p.a})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ── Mobile Nav ──────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('nav');
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+  // Close on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => nav.classList.remove('open'));
+  });
+
+  // ── Scroll Reveal ───────────────────────────────────
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Copy CA ─────────────────────────────────────────
+  function copyCA() {
+    const btn = document.getElementById('ca-copy-btn');
+    const text = document.getElementById('ca-text').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'COPIED! ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'COPY';
+        btn.classList.remove('copied');
+      }, 2200);
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'COPIED! ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'COPY';
+        btn.classList.remove('copied');
+      }, 2200);
+    });
+  }
+
+  // ── Sticky Nav Bg ───────────────────────────────────
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 20
+      ? 'rgba(10,10,10,0.97)'
+      : 'rgba(10,10,10,0.85)';
+  });
+
+  // ── Trigger hero reveals immediately ────────────────
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), i * 150);
+  });
+</script>
+</body>
+</html>
