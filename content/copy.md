@@ -3,7 +3,7 @@
 ## Twitter/X Bio Options
 
 **Option A** *(mass appeal, punchy)*
-> The only coin that gets worse every Sunday night. $MONDAY on Solana. You hate it. You need it. ☕
+> 8 billion people hate Mondays. We made it a coin. $MONDAY on Solana. You hate it. You need it. ☕
 
 **Option B** *(ironic/self-aware)*
 > We tokenized your least favorite day. Not financial advice. Definitely an alarm clock. $MONDAY 🟡 on Solana.
