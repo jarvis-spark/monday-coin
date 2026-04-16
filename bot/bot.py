@@ -75,43 +75,47 @@ TOKENOMICS_MSG = """
 
 🪙 *Supply:* 1,000,000,000 (1 Billion)
 💸 *Tax:* 0% — zero, none, nada
-🔥 *LP:* Burned — no rug possible
+🔥 *LP:* Burned at graduation — no rug possible
 ⛓️ *Chain:* Solana
-🚀 *Launch:* Fair launch on pump.fun
+🚀 *Launch:* 100% fair launch on pump.fun
 ✅ *Mint Authority:* Revoked
 ✅ *Freeze Authority:* Revoked
+✅ *Ownership:* Renounced
 
-No presale. No team allocation. No VC unlock. Just vibes and Monday energy. ☕
+No presale. No team allocation. No VC bags. No insider wallets.
+Everyone buys on the same curve. ☕
 """
 
 ROADMAP_MSG = """
 📅 *$MONDAY Roadmap*
 
-*Phase 1 — "The Alarm Goes Off"*
-✅ Token deployed
-✅ LP burned, contract renounced
+*Phase 1 — "The Alarm Goes Off" 😩*
+🎯 Fair launch on pump.fun
+🎯 LP burned at graduation, contract renounced
 ✅ Twitter & Telegram live
+✅ Website live
 🎯 1,000 holders
 🎯 CoinGecko & CMC listing
 
-*Phase 2 — "The Second Alarm"*
+*Phase 2 — "The Commute From Hell" ☕*
 🎯 10,000 holders
-🎯 CEX listings
+🎯 CEX applications begin
 🎯 KOL partnerships
-🎯 Meme contest
+🎯 Meme contest with $MONDAY prizes
+🎯 DexScreener trending campaign
 
-*Phase 3 — "Fine. We're Up."*
+*Phase 3 — "Fine. We're Up." 💀*
 🎯 50,000 holders
-🎯 Merch drop
-🎯 Major CEX tier-2
-🎯 Weekly Monday Report
+🎯 Merch drop (hoodies, mugs — obviously)
+🎯 Major CEX listing (if the universe cooperates)
+🎯 Community governance proposals begin
 
-*Phase 4 — "We Are The Monday"*
-🎯 100,000+ holders
-🎯 Tier-1 CEX listing
+*Phase 4 — "When Monday Becomes Payday" 🚀*
+🎯 100,000+ holders globally
+🎯 Top 100 CMC (dare to dream 😴)
 🎯 $MONDAY becomes the internet's Monday coin. Forever.
 
-_Disclaimer: meme coin. We'll try our best. That's more than most Mondays deserve._
+_Disclaimer: meme coin. No promises — just vibes and the universal shared trauma of 8 billion people who hate Mondays._
 """
 
 MONDAY_QUOTES = [
