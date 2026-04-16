@@ -2376,3 +2376,14 @@
 2026-04-16 23:17:31,466 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getUpdates "HTTP/1.1 200 OK"
 2026-04-16 23:17:41,491 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getUpdates "HTTP/1.1 200 OK"
 2026-04-16 23:17:51,517 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getUpdates "HTTP/1.1 200 OK"
+2026-04-16 23:18:03,693 - __main__ - INFO - $MONDAY bot starting...
+2026-04-16 23:18:03,772 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getMe "HTTP/1.1 200 OK"
+2026-04-16 23:18:03,772 - telegram.ext.Application - INFO - Application started
+2026-04-16 23:18:03,795 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/deleteWebhook "HTTP/1.1 200 OK"
+2026-04-16 23:18:03,795 - __main__ - INFO - Bot is running. Press Ctrl+C to stop.
+2026-04-16 23:18:13,876 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getUpdates "HTTP/1.1 200 OK"
+2026-04-16 23:18:23,905 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getUpdates "HTTP/1.1 200 OK"
+2026-04-16 23:18:33,931 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getUpdates "HTTP/1.1 200 OK"
+2026-04-16 23:18:43,958 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getUpdates "HTTP/1.1 200 OK"
+2026-04-16 23:18:53,986 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getUpdates "HTTP/1.1 200 OK"
+2026-04-16 23:19:04,012 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8611416012:AAHo_LLzrwyudUuZt-qfydk4MA8NdUj-shk/getUpdates "HTTP/1.1 200 OK"
