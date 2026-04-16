@@ -31,7 +31,7 @@ monday-coin/
 
 ## Links
 
-- 🌐 Website: TBD
+- 🌐 Website: https://monday-coin.vercel.app
 - 🐦 Twitter/X: https://x.com/MondayOnSol
 - 💬 Telegram: https://t.me/MondaySolana
 - 📊 Chart: TBD
