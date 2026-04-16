@@ -60,7 +60,7 @@ You made it. Against all odds — traffic, broken coffee machines, passive-aggre
 **$MONDAY** is the Solana meme coin based on the world's most universally hated day.
 
 📌 **Quick Links:**
-- 🌐 Website: [LINK]
+- 🌐 Website: https://mondayonsol.com
 - 🐦 Twitter/X: https://x.com/MondayOnSol
 - 📊 Chart: [LINK]
 - 🪙 CA: `[CA]`
