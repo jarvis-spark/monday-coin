@@ -6,6 +6,8 @@ Anonymous community manager for @MondayOnSol
 import os
 import logging
 import asyncio
+from dotenv import load_dotenv
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 from datetime import datetime, time
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
@@ -258,10 +260,10 @@ async def monday_morning_post(context: ContextTypes.DEFAULT_TYPE):
         logger.error(f"Monday morning post failed: {e}")
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
-def main():
+async def main():
     if not BOT_TOKEN:
         raise ValueError("MONDAY_BOT_TOKEN environment variable not set")
-    
+
     app = Application.builder().token(BOT_TOKEN).build()
 
     # Commands
@@ -282,7 +284,11 @@ def main():
     app.add_handler(MessageHandler(filters.TEXT & filters.ChatType.GROUPS, spam_filter))
 
     logger.info("$MONDAY bot starting...")
-    app.run_polling(allowed_updates=Update.ALL_TYPES)
+    async with app:
+        await app.start()
+        await app.updater.start_polling(allowed_updates=Update.ALL_TYPES)
+        logger.info("Bot is running. Press Ctrl+C to stop.")
+        await asyncio.Event().wait()  # run forever
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
