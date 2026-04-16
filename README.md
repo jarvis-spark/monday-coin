@@ -32,7 +32,7 @@ monday-coin/
 ## Links
 
 - 🌐 Website: TBD
-- 🐦 Twitter/X: TBD
+- 🐦 Twitter/X: https://x.com/MondayOnSol
 - 💬 Telegram: TBD
 - 📊 Chart: TBD
 - 🪙 CA: TBD

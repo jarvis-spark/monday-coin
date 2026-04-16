@@ -61,7 +61,7 @@ You made it. Against all odds — traffic, broken coffee machines, passive-aggre
 
 📌 **Quick Links:**
 - 🌐 Website: [LINK]
-- 🐦 Twitter/X: [LINK]
+- 🐦 Twitter/X: https://x.com/MondayOnSol
 - 📊 Chart: [LINK]
 - 🪙 CA: `[CA]`
 - 🛒 Buy on Pump.fun: [LINK]
